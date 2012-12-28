@@ -1,0 +1,26 @@
+*** Settings ***
+Resource   ../config-resources.txt
+
+*** Test Cases ***
+Wrapper verify domain1 properties
+    [Tags]  domain1     wrapper-domain1  wrapper
+    ${domain1}=             Create Config Domain Wrapper        ${DOMAIN1_NAME}
+    ${expectedBoolean}=     Convert To Boolean                  true
+    ${expectedInteger}=     Convert To Integer                  100
+    ${expectedDouble}=      Convert To Number                   10.54
+    Should Be Equal         ${domain1.get('string')}            string property
+    Should Be Equal         ${domain1.getBoolean('boolean')}    ${expectedBoolean}
+    Should Be Equal         ${domain1.getInteger('integer')}    ${expectedInteger}
+    Should Be Equal         ${domain1.getDouble('double')}      ${expectedDouble}
+
+Wrapper verify domain2 properties
+    [Tags]  domain2     wrapper-domain2  wrapper
+    ${domain2}=             Create Config Domain Wrapper        ${DOMAIN2_NAME}
+    ${expectedBoolean}=     Convert To Boolean                  false
+    ${expectedInteger}=     Convert To Integer                  200
+    ${expectedDouble}=      Convert To Number                   20.54
+    Should Be Equal         ${domain2.get('string')}            string property too
+    Should Be Equal         ${domain2.getBoolean('boolean')}    ${expectedBoolean}
+    Should Be Equal         ${domain2.getInteger('integer')}    ${expectedInteger}
+    Should Be Equal         ${domain2.getDouble('double')}      ${expectedDouble}
+

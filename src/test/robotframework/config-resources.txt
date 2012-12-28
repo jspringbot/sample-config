@@ -1,0 +1,7 @@
+*** Settings ***
+Library           org.jspringbot.spring.GlobalSpringLibrary    spring/spring-global.xml
+
+*** Variables ***
+${DOMAIN1_NAME}=    domain1
+${DOMAIN2_NAME}=    domain2
+
