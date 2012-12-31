@@ -8,17 +8,17 @@ Expression verify domain1 properties
     Evaluate Expression Should Be Equal   \#{config:stringProperty}    string property
     Evaluate Expression Should Be Equal   \#{b:config:booleanProperty}   \#{true}
     Evaluate Expression Should Be Equal   \#{i:config:integerProperty}   \#{i:100}
-    Evaluate Expression Should Be Equal   \#{d:config:doubleProperty}    \#{d:10.54}
+    Evaluate Expression Should Be Equal   \#{d:config:doubleProperty}    \#{10.54}
 
 Expression verify domain2 properties
-    [Tags]  domain1     expression-domain1  expression
+    [Tags]  domain1     expression-domain2  expression
     Evaluate Expression Should Be Equal   \#{config:domain2:stringProperty}      string property too
     Evaluate Expression Should Be Equal   \#{b:config:domain2:booleanProperty}   \#{false}
     Evaluate Expression Should Be Equal   \#{i:config:domain2:integerProperty}   \#{i:200}
-    Evaluate Expression Should Be Equal   \#{d:config:domain2:doubleProperty}    \#{d:20.54}
+    Evaluate Expression Should Be Equal   \#{d:config:domain2:doubleProperty}    \#{20.54}
 
 Expression verify with variables
     [Tags]  domain1     expression-variables  expression
-    Add Expression Variable              property    \#{config:domain2:integerProperty:integer}
+    Add Expression Variable              property    \#{config:domain2:integerProperty}
     Evaluate Expression Should Be True   \#{property eq 200}
 
