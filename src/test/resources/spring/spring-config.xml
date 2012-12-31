@@ -37,6 +37,14 @@
     </property>
   </bean>
 
+  <bean name="configExpressionHandler" class="org.jspringbot.keyword.config.ConfigExpressionHandler">
+    <constructor-arg ref="configHelper"/>
+  </bean>
+
+  <bean name="configExpressionHandlerRegistryBean" class="org.jspringbot.keyword.expression.plugin.ExpressionHandlerRegistryBean">
+    <constructor-arg ref="configExpressionHandler"/>
+  </bean>
+
   <!-- Scan components -->
   <ctx:component-scan base-package="org.jspringbot.keyword.config"/>
   <ctx:annotation-config/>
