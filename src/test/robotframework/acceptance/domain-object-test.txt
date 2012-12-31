@@ -23,6 +23,6 @@ Domain Object verify domain2 properties
     Should Be Equal         ${domain2.getDomain()}              domain2
     Should Be Equal         ${domain2.get('stringProperty')}            string property too
     Should Be Equal         ${domain2.getBoolean('booleanProperty')}    ${expectedBoolean}
-    Should Be Equal         ${domain2.getInteger('integerProperty')}           ${expectedInteger}
+    Should Be Equal         ${domain2.getInteger('integerProperty')}    ${expectedInteger}
     Should Be Equal         ${domain2.getDouble('doubleProperty')}      ${expectedDouble}
 
