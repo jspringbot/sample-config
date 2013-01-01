@@ -19,6 +19,6 @@ Expression verify domain2 properties
 
 Expression verify with variables
     [Tags]  domain1     expression-variables  expression
-    Add Expression Variable              property    $[config:domain2:integerProperty]
+    EL Add Variable     property    $[config:domain2:integerProperty]
     EL Should Be True   $[property eq 200]
 
