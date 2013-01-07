@@ -4,6 +4,7 @@ Resource   ../config-resources.txt
 *** Test Cases ***
 Expression verify domain1 properties
     [Tags]  domain1     expression-domain1  expression
+    ${domain1}=             Create Config Domain Object        ${DOMAIN1_NAME}
     Select Config Domain            ${DOMAIN1_NAME}
     EL Should Be Equal   $[config:stringProperty]    string property
     EL Should Be Equal   $[b:config:booleanProperty]   $[true]
@@ -21,4 +22,9 @@ Expression verify with variables
     [Tags]  domain1     expression-variables  expression
     EL Add Variable     property    $[config:domain2:integerProperty]
     EL Should Be True   $[property eq 200]
+
+Expression verify domain2 with replacement
+    [Tags]  domain2     expression-replacement  expression
+    ${var1}=             Set Variable   var1Value
+    EL Should Be Equal   $[config:domain2:testProperty]      var1Value/a
 
