@@ -70,7 +70,7 @@
           </dependency>
           <dependency>
             <groupId>org.piraso</groupId>
-            <artifactId>piraso-jspringbot-bridge-server</artifactId>
+            <artifactId>piraso-jspringbot-bridge-client</artifactId>
             <version>1.0-SNAPSHOT</version>
           </dependency>
         </dependencies>
