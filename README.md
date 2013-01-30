@@ -1,4 +1,4 @@
-jSpringBot Config Sample
+jSpringBot Config Sample [![Build Status](https://buildhive.cloudbees.com/job/jspringbot/job/sample-config/badge/icon)](https://buildhive.cloudbees.com/job/jspringbot/job/sample-config/)
 =======
 
 ### Introduction
