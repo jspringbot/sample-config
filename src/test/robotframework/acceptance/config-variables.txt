@@ -1,0 +1,66 @@
+*** Settings ***
+Library     JSpringBotGlobal
+Library     BuiltIn
+
+*** Variables ***
+${robotVariable}                     robotVariableValue
+
+*** Test Cases ***
+# Maven Property Can Be Used In Config Variables
+Maven Property Can't Be Used In Config Variables
+    ${mavenVarValue}=           EL Evaluate             $[config:config-variables:test1]
+    Should Be Equal As Strings  ${mavenVarValue}        null                                # mavenValue
+
+Robot Variable Can Be Used In Config Variables
+    ${robotVarValue}=           EL Evaluate             $[config:config-variables:test2a]
+    Should Be Equal As Strings  ${robotVarValue}        robotValue
+
+Robot Variable Defined In Variables Group Can Be Used In Config Variables
+    ${robotVariableValue}=      EL Evaluate             $[config:config-variables:test2b]
+    Should Be Equal As Strings  ${robotVariableValue}   robotVariableValue
+
+EL Variable Can Be Used In Config Variables
+    EL Add Variable             elVar                   elValue
+    ${elVarValue}=              EL Evaluate             $[config:config-variables:test3]
+    Should Be Equal As Strings  ${elVarValue}           elValue
+
+EL Global Variable Can't Be Used In Config Variables
+    EL Add Variable             elGlboaVar              elGlobalValue
+    ${elGlobalVarValue}=        EL Evaluate             $[config:config-variables:test4]
+    Should Be Equal As Strings  ${elGlobalVarValue}     null
+
+EL Variable Format Can't Be Used In Config
+    EL Add Variable             elVar                   elValue
+    ${elVarValue}=              EL Evaluate             $[config:config-variables:test5]
+    Should Be Equal As Strings  ${elVarValue}           $[elVar]
+
+# Maven Property Supersedes EL Variable
+EL Variable Supersedes Maven Property
+    EL Add Variable             var6                    elValue
+    EL Should Be Equal          $[config:config-variables:test6]   elValue                  # mavenValue
+
+EL Variable Supersedes Robot Variable Scenario 1
+    EL Add Variable             var7                    elValue
+    EL Should Be Equal          $[config:config-variables:test7]   elValue
+
+EL Variable Supersedes Robot Variable Scenario 2
+    ${var8}=                    Set Variable            robotValue
+    EL Add Variable             var8                    elValue
+    EL Should Be Equal          $[config:config-variables:test8]   elValue
+
+# Maven Property Supersedes Robot Variable and EL Variable
+EL Variable Supersedes Maven Property and Robot Variable
+    EL Add Variable             var9                    elValue
+    EL Should Be Equal          $[config:config-variables:test9]   elValue                  # mavenValue
+
+Config Variable Is Case Sensitive Scenario 1
+    EL Add Variable             VAR10                   elValue
+    EL Should Be Equal          $[config:config-variables:test10]  elValue
+
+Config Variable Is Case Sensitive Scenario 2
+    ${var11a}                   Set Variable            robotValue
+    EL Add Variable             VAR11A                   elValue
+    EL Should Be Equal          $[config:config-variables:test11a]  robotValue
+    ${var11a}                   Set Variable            robotValue
+    EL Add Variable             VAR11B                   elValue
+    EL Should Be Equal          $[config:config-variables:test11b]  elValue

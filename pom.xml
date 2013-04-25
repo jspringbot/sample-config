@@ -44,6 +44,13 @@
     </license>
   </licenses>
 
+  <properties>
+    <mavenVar>mavenValue</mavenVar>
+    <var6>mavenValue</var6>
+    <var9>mavenValue</var9>
+    <var10>mavenValue</var10>
+  </properties>
+
   <build>
     <plugins>
       <plugin>
@@ -55,6 +62,14 @@
             <goals>
               <goal>run</goal>
             </goals>
+            <configuration>
+              <variables>
+                <variable>robotVar:robotValue</variable>
+                <variable>var7:robotValue</variable>
+                <variable>var9:robotValue</variable>
+                <variable>VAR10:${var10}</variable>
+              </variables>
+            </configuration>
           </execution>
         </executions>
       </plugin>
