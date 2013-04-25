@@ -25,7 +25,7 @@ EL Variable Can Be Used In Config Variables
     Should Be Equal As Strings  ${elVarValue}           elValue
 
 EL Global Variable Can't Be Used In Config Variables
-    EL Add Variable             elGlboaVar              elGlobalValue
+    EL Add Variable             elGlobalVar             elGlobalValue
     ${elGlobalVarValue}=        EL Evaluate             $[config:config-variables:test4]
     Should Be Equal As Strings  ${elGlobalVarValue}     null
 
