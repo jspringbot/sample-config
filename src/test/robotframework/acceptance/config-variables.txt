@@ -6,11 +6,33 @@ Library     BuiltIn
 ${robotVariable}                     robotVariableValue
 
 *** Test Cases ***
-# Maven Property Can Be Used In Config Variables
-Maven Property Can't Be Used In Config Variables
+# When resource filtering is true, maven properties values are substituted in all the variable in the indicated folder.
+Maven Property Can Be Used In Config Variables
     ${mavenVarValue}=           EL Evaluate             $[config:config-variables:test1]
-    Should Be Equal As Strings  ${mavenVarValue}        null                                # mavenValue
+    Should Be Equal As Strings  ${mavenVarValue}        mavenValue
 
+Maven Property Supersedes EL Variable
+    EL Add Variable             var6                    elValue
+    EL Should Be Equal          $[config:config-variables:test6]   mavenValue
+
+Maven Property Supersedes Robot Variable and EL Variable
+    EL Add Variable             var9                    elValue
+    EL Should Be Equal          $[config:config-variables:test9]   mavenValue
+
+# Samples below will only work when resource filtering is turned off
+# Maven Property Are Not Substituted In Config Variables
+#    ${mavenVarValue}=           EL Evaluate             $[config:config-variables:test1]
+#    Should Be Equal As Strings  ${mavenVarValue}        null
+#
+# EL Variable Is Used Instead Of Maven Property
+#    EL Add Variable             var6                    elValue
+#    EL Should Be Equal          $[config:config-variables:test6]   elValue
+#
+# EL Variable Is Used Instead Of Maven Property and EL Variable Supersedes Robot Variable
+#    EL Add Variable             var9                    elValue
+#    EL Should Be Equal          $[config:config-variables:test9]   elValue
+
+# Robot VS EL Variables
 Robot Variable Can Be Used In Config Variables
     ${robotVarValue}=           EL Evaluate             $[config:config-variables:test2a]
     Should Be Equal As Strings  ${robotVarValue}        robotValue
@@ -24,20 +46,15 @@ EL Variable Can Be Used In Config Variables
     ${elVarValue}=              EL Evaluate             $[config:config-variables:test3]
     Should Be Equal As Strings  ${elVarValue}           elValue
 
-EL Global Variable Can't Be Used In Config Variables
-    EL Add Variable             elGlobalVar             elGlobalValue
+EL Global Variable Can Be Used In Config Variables
+    EL Add Global Variable      elGlobalVar             elGlobalValue
     ${elGlobalVarValue}=        EL Evaluate             $[config:config-variables:test4]
-    Should Be Equal As Strings  ${elGlobalVarValue}     null
+    Should Be Equal As Strings  ${elGlobalVarValue}     elGlobalValue
 
 EL Variable Format Can't Be Used In Config
     EL Add Variable             elVar                   elValue
     ${elVarValue}=              EL Evaluate             $[config:config-variables:test5]
     Should Be Equal As Strings  ${elVarValue}           $[elVar]
-
-# Maven Property Supersedes EL Variable
-EL Variable Supersedes Maven Property
-    EL Add Variable             var6                    elValue
-    EL Should Be Equal          $[config:config-variables:test6]   elValue                  # mavenValue
 
 EL Variable Supersedes Robot Variable Scenario 1
     EL Add Variable             var7                    elValue
@@ -47,11 +64,6 @@ EL Variable Supersedes Robot Variable Scenario 2
     ${var8}=                    Set Variable            robotValue
     EL Add Variable             var8                    elValue
     EL Should Be Equal          $[config:config-variables:test8]   elValue
-
-# Maven Property Supersedes Robot Variable and EL Variable
-EL Variable Supersedes Maven Property and Robot Variable
-    EL Add Variable             var9                    elValue
-    EL Should Be Equal          $[config:config-variables:test9]   elValue                  # mavenValue
 
 Config Variable Is Case Sensitive Scenario 1
     EL Add Variable             VAR10                   elValue

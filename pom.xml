@@ -52,6 +52,13 @@
   </properties>
 
   <build>
+    <!-- Replaces all variable in src/test/resources when filtering is true.-->
+    <testResources>
+      <testResource>
+        <directory>src/test/resources</directory>
+        <filtering>true</filtering>
+      </testResource>
+    </testResources>
     <plugins>
       <plugin>
         <groupId>org.jspringbot</groupId>
