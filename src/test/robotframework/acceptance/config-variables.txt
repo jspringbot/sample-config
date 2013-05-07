@@ -34,7 +34,7 @@ Maven Property Supersedes Robot Variable and EL Variable
 
 # Robot VS EL Variables
 Robot Variable Can Be Used In Config Variables
-    ${robotVarValue}=           EL Evaluate             $[config:config-variables:test2a]
+    ${robotVarValue}=           EL Evaluate             $[config:config-variables:test2]
     Should Be Equal As Strings  ${robotVarValue}        robotValue
 
 Robot Variable Defined In Variables Group Can Be Used In Config Variables
