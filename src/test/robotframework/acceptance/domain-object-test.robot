@@ -1,5 +1,5 @@
 *** Settings ***
-Resource   ../config-resources.txt
+Resource   ../config-resources.robot
 
 *** Test Cases ***
 Domain Object verify domain1 properties

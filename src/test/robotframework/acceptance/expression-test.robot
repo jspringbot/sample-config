@@ -1,5 +1,5 @@
 *** Settings ***
-Resource   ../config-resources.txt
+Resource   ../config-resources.robot
 
 *** Test Cases ***
 Expression verify domain1 properties
