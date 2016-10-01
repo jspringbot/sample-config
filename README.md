@@ -1,5 +1,6 @@
-jSpringBot Config Sample [![Build Status](https://buildhive.cloudbees.com/job/jspringbot/job/sample-config/badge/icon)](https://buildhive.cloudbees.com/job/jspringbot/job/sample-config/)
-=======
+sample-config [![Build Status](https://travis-ci.org/jspringbot/sample-config.svg?branch=master)](https://travis-ci.org/jspringbot/sample-config)
+====
+jSpringBot Config Sample
 
 ### Introduction
 
